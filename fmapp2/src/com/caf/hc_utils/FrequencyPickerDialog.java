@@ -19,7 +19,7 @@
 
 package com.caf.utils;
 
-import android.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -63,8 +63,9 @@ OnFrequencyChangedListener {
                                                             FmConfig fmConfig,
                                                             int frequency,
                                  OnFrequencySetListener callback) {
-        //this(context, android.R.style.Theme_Dialog, fmConfig, frequency, callback);
-       this(context, com.android.internal.R.style.Theme_Dialog_Alert, fmConfig, frequency, callback);
+       //this(context, android.R.style.Theme_DeviceDefault_Dialog_Alert, fmConfig, frequency, callback);
+       this(context, R.style.Theme_AppCompat_DayNight_Dialog_Alert, fmConfig, frequency, callback);
+       //this(context, com.android.internal.R.style.Theme_Dialog_Alert, fmConfig, frequency, callback);
     }
 
     /**
@@ -99,8 +100,8 @@ OnFrequencyChangedListener {
         }
         mCallBack = callback;
 
-        setButton(context.getString(R.string.set), this);
-        setButton2(context.getString(android.R.string.cancel),  (OnClickListener) null);
+        setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.set), this);
+        setButton(DialogInterface.BUTTON_NEGATIVE, context.getString(android.R.string.cancel),  (OnClickListener) null);
         setIcon(R.drawable.alert_dialog_icon);
 
         LayoutInflater inflater =

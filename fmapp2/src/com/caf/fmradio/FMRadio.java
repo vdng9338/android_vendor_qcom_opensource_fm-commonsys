@@ -28,7 +28,8 @@
 
 package com.caf.fmradio;
 
-import android.app.ActionBar;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -103,7 +104,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.Manifest;
 import android.content.pm.PackageManager;
 
-public class FMRadio extends Activity
+public class FMRadio extends AppCompatActivity
 {
    public static final String LOGTAG = "FMRadio";
 
@@ -343,7 +344,7 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions,  i
       getWindow().setBackgroundDrawableResource(R.color.background_color);
 
       // Set up your ActionBar
-      final ActionBar actionBar = getActionBar();
+      final ActionBar actionBar = getSupportActionBar();
       actionBar.setDisplayShowHomeEnabled(false);
       actionBar.setDisplayShowTitleEnabled(false);
       actionBar.setDisplayShowCustomEnabled(true);
@@ -352,7 +353,7 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions,  i
       ((TextView) findViewById(R.id.title)).setText(R.string.app_name);
 
       setContentView(R.layout.fmradio);
-      SavedDataAndState = (LoadedDataAndState)getLastNonConfigurationInstance();
+      SavedDataAndState = (LoadedDataAndState)getLastCustomNonConfigurationInstance();
 
       mPicker = (HorizontalNumberPicker)findViewById(R.id.fm_picker);
       if (mPicker != null) {
@@ -661,7 +662,7 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions,  i
       public boolean onOrOff;
    }
    @Override
-   public Object onRetainNonConfigurationInstance() {
+   public Object onRetainCustomNonConfigurationInstance() {
       LoadedDataAndState data = new LoadedDataAndState();
       if (mService != null) {
          try {
